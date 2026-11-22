@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/import-photographs.yml'
+      - 'download_photos.py'
   workflow_dispatch:
 permissions:
   contents: write
