@@ -1,0 +1,26 @@
+name: Import verified monument photographs
+on:
+  push:
+    paths:
+      - '.github/workflows/import-photographs.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-photographs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image libraries
+        run: pip install requests pillow
+      - name: Download monument and park photographs
+        run: python download_photos.py
+      - name: Commit photographs and status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos/
+          git diff --cached --quiet || (git commit -m "Add authentic route monument photographs" && git push)
