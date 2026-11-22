@@ -1,0 +1,19 @@
+{
+  "ok": [
+    "r2-01",
+    "r2-02",
+    "r2-03",
+    "r2-04",
+    "r2-05",
+    "r3-01",
+    "r3-02",
+    "r3-03",
+    "r3-04"
+  ],
+  "errors": [
+    [
+      "r2-06",
+      "404 Client Error: Not Found for url: https://rus.baq.kz/storage/storage/news/2021/10/03/mainphoto/91365/1200x700_5rSLcYzeznlaNIt1hTA7PiYYlLuBxhbJlUysLowP.jpg"
+    ]
+  ]
+}
