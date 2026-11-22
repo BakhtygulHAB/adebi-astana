@@ -1,0 +1,26 @@
+name: Build 3-slide PowerPoint with real photographs
+on:
+  push:
+    paths:
+      - '.github/workflows/build-real-photo-slides.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-presentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install required Python libraries
+        run: pip install python-pptx pillow qrcode
+      - name: Generate editable presentation with photographic images
+        run: python build_real_photo_pptx.py
+      - name: Commit finished presentation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add presentations/Adebi_Astana_3_bagyt_real_photos_QR.pptx
+          git diff --cached --quiet || (git commit -m "Update 3 route PowerPoint with real photographs" && git pull --rebase origin main && git push)
